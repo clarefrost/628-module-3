@@ -45,10 +45,13 @@ summary(m2)
 
 
 # Give suggestions
+##review's suggestions:
+suggestions_review=read.csv("suggestions.csv")
+
 
 attr_name=c("Caters","BusinessParking_street","GoodForMeal_breakfast","Alcohol","GoodForKids",
               "NoiseLevel","OutdoorSeating","RestaurantsPriceRange2")
-suggest=rep("",7107)
+suggest=rep("",6307)
 
 for (i in 1:dim(df)[1]) {
   if(df[i,"Caters"]!="True"){
@@ -84,8 +87,12 @@ for (i in 1:dim(df)[1]) {
   }
   
 }
+sug4_byattribute=suggest
 
+suggestions=cbind(suggestions_review,sug4_byattribute)
+
+write.csv(suggestions,"./suggestions.csv")
 
 ###now suggest can be added to business, don;t change the business order. 
 
-
+suggestions=read.csv("suggestions.csv")
