@@ -10,7 +10,7 @@ This folder includes cleaned data and final data we use.
 ## Code
 This folder includes the R codes and python codes we use to analyse data, draw picture and give suggestions. It also includes shiny R codes.
 
-## Figure
+## images
 This folder contains all the figures produced in our analysis in R and python.
 
 ## Slides
