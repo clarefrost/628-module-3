@@ -21,7 +21,7 @@ ui<-fluidPage(
                 
                 mainPanel(tabsetPanel(
                   tabPanel("Review Star for the Restaurant", h3(textOutput("name")), plotOutput("disPlot")),
-                  tabPanel("Recommendation for Restaurant", textOutput("text1"), textOutput("text2"),textOutput("text3"),textOutput("text4")),
+                  tabPanel("Recommendation for Restaurant", textOutput("text1"), textOutput("text2"),textOutput("text3"),textOutput("text4"),textOutput("text5"),textOutput("text6")),
                   tabPanel("Restaurant Map", h2(textOutput("map_info")),leafletOutput("map")),
                   tabPanel("business_id for the restaurant name you input",DT::dataTableOutput("table"))
                 ),
@@ -51,16 +51,35 @@ server<-function(input, output) {
     })  
   
   output$text1 <- renderText({
-    paste("1:",df[df["business_id"]==input$business_id,'sug1'])
+    if(is.null(df[df["business_id"]==input$business_id,'sug1'])|dim(df[df["business_id"]==input$business_id,])[1]==0){
+      paste(" ")
+    }else{
+    paste("Suggestion:",df[df["business_id"]==input$business_id,'sug1'])}
   })
   output$text2 <- renderText({
-    paste("2:",df[df["business_id"]==input$business_id,'sug2'])
+    if(is.null(df[df["business_id"]==input$business_id,'sug2'])|dim(df[df["business_id"]==input$business_id,])[1]==0){
+    }else{
+    paste("Suggestion:",df[df["business_id"]==input$business_id,'sug2'])}
   })
   output$text3 <- renderText({
-    paste("3:",df[df["business_id"]==input$business_id,'sug3'])
+    if(is.null(df[df["business_id"]==input$business_id,'sug3'])|dim(df[df["business_id"]==input$business_id,])[1]==0){
+    }else{
+    paste("Suggestion:",df[df["business_id"]==input$business_id,'sug3'])}
   })
   output$text4 <- renderText({
-    paste("Suggestions by attributes: ",df[df["business_id"]==input$business_id,'sug4_byattribute'])
+    if(is.null(df[df["business_id"]==input$business_id,'sug4_byattribute'])|dim(df[df["business_id"]==input$business_id,])[1]==0){
+    }else{
+      paste("Suggestions by attributes: ",df[df["business_id"]==input$business_id,'sug4_byattribute'])}
+  })
+  output$text5 <- renderText({
+    if(is.null(df[df["business_id"]==input$business_id,'sug5_byattribute'])|dim(df[df["business_id"]==input$business_id,])[1]==0){
+    }else{
+      paste("Suggestions by attributes: ",df[df["business_id"]==input$business_id,'sug5_byattribute'])}
+  })
+  output$text6 <- renderText({
+    if(is.null(df[df["business_id"]==input$business_id,'sug6_byattribute'])|dim(df[df["business_id"]==input$business_id,])[1]==0){
+    }else{
+      paste("Suggestions by attributes: ",df[df["business_id"]==input$business_id,'sug6_byattribute'])}
   })
   output$map_info=renderText({
     if (dim(df[df["business_id"]==input$business_id,])[1]==0){
