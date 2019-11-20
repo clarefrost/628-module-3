@@ -49,7 +49,8 @@ summary(m2)
 attr_name=c("Caters","BusinessParking_street","GoodForMeal_breakfast","Alcohol","GoodForKids",
               "NoiseLevel","OutdoorSeating","RestaurantsPriceRange2")
 suggest=rep("",7107)
-for (i in dim(df)[1]) {
+
+for (i in 1:dim(df)[1]) {
   if(df[i,"Caters"]!="True"){
     suggest[i]=paste("Provide cater will increase 0.2 star for you.", sep = " ")
   }
@@ -66,7 +67,7 @@ for (i in dim(df)[1]) {
     suggest[i]=paste( suggest[i], "Provide wine and beer will increase 0.15 star for you.",sep = " ")
   }
   
-  if(df[i,"GoodForKids"]="True"){
+  if(df[i,"GoodForKids"]!="False"){
     suggest[i]=paste( suggest[i], "Kids being noisy may decrease 0.2 star for you.",sep = " ")
   }
   
@@ -74,18 +75,17 @@ for (i in dim(df)[1]) {
     suggest[i]=paste( suggest[i], "Loud noise may decrease up to 0.5 star for you! So please keep quiet.",sep = " ")
   }
   
+  if(df[i,"OutdoorSeating"]!="True"){
+    suggest[i]=paste( suggest[i], "Provie outdoor seating will increase 0.09 star for you.",sep = " ")
+  }
   
-  
+  if(df[i,"RestaurantsPriceRange2"]!=(1|4)){
+    suggest[i]=paste( suggest[i], "Re-considering pricing strategy may increase up to 0.2 star for you.",sep = " ")
+  }
   
 }
 
 
-
-
-
-
-
-
-
+###now suggest can be added to business, don;t change the business order. 
 
 
